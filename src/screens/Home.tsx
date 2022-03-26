@@ -70,6 +70,9 @@ import { RootStackParamList } from "../navigations/AppNavigation";
      const onPressCapsules = () => {
         navigation.navigate('CapsulesScreen')
       }
+      const onPressRockets = () => {
+        console.log('Pressed')
+      }
 
     return (
       <View style={Styles.wrap}>    
@@ -83,6 +86,11 @@ import { RootStackParamList } from "../navigations/AppNavigation";
           <View style={Styles.capsuleContainer}>
             <TouchableOpacity style={Styles.capsuleWrap} onPress={onPressCapsules}>  
             <Text style={Styles.capsuleButton}>Информация о капсулах</Text>           
+            </TouchableOpacity>
+          </View>
+          <View style={Styles.rocketContainer}>
+            <TouchableOpacity style={Styles.rocketWrap} onPress={onPressRockets}>  
+            <Text style={Styles.rocketButton}>Информация о капсулах</Text>           
             </TouchableOpacity>
           </View>
         </View>
@@ -105,11 +113,13 @@ import { RootStackParamList } from "../navigations/AppNavigation";
       top: 111
     },
     infoButton: {
+      fontFamily: 'ProximaThin',
       fontSize: 17,
       color: '#fff',
       textAlign: 'center'
     },
     capsuleButton: {
+      fontFamily: 'ProximaThin',
       fontSize: 17,
       color: '#fff',
       textAlign: 'center'
@@ -136,6 +146,21 @@ import { RootStackParamList } from "../navigations/AppNavigation";
     buttonsContainer: {
       display: 'flex',
       alignItems: 'center',
+    },
+    rocketButton: {
+      fontFamily: 'ProximaThin',
+      fontSize: 17,
+      color: '#fff',
+      textAlign: 'center'
+    },
+    rocketContainer: {
+      marginTop: 50,
+      width: '65%',
+    },
+    rocketWrap: {
+      backgroundColor: "#225dcadc",
+      padding: 20,
+      borderRadius: 30,
     }
   });
   

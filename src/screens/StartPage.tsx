@@ -1,38 +1,38 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import React, { useState } from "react";
-import {ImageBackground, ImageComponent, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import {ImageBackground, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { RootStackParamList } from "../navigations/AppNavigation";
-import Loading from "../loading/Loading";
-import { IStartPageState } from "../types";
+
 
 
 
 
     type Props = NativeStackScreenProps<RootStackParamList, 'HelloPage'>
 
-    export  class StartPage extends React.Component<Props> {
+    export const StartPage:React.FC<Props> = ({ navigation }) =>  {
 
-        onPressStart = () => {
-          this.props.navigation.navigate('HomeScreen')
+       const onPressStart = () => {
+         navigation.navigate('HomeScreen')
       }
 
-       image = require('../../assets/photos/SpaceX-NASA-Launch-04.jpg');
+      const image = require('../../assets/photos/SpaceX-NASA-Launch-04.jpg');
 
       // if () {
       //     return (
       //    <Loading/>
       //   );       
       // } 
-     render() {
+     
+      
          
     return (
         <View style={Styles.container}>
           
-           <ImageBackground  source={this.image} style={Styles.image} >
+           <ImageBackground  source={image} style={Styles.image} >
                
                 <View style={Styles.buttonContainer}>
-                   <TouchableOpacity style={Styles.wrap} onPress={this.onPressStart} >
+                   <TouchableOpacity style={Styles.wrap} onPress={onPressStart} >
                        <Text style={Styles.start}>Get started</Text>
                    </TouchableOpacity>
                 </View>
@@ -42,7 +42,7 @@ import { IStartPageState } from "../types";
         </View>
         )
      }
-  };
+  
 
   const Styles = StyleSheet.create({
     container: {
@@ -57,6 +57,7 @@ import { IStartPageState } from "../types";
         height: '100%',
     },
     start: {
+      fontFamily: 'ProximaBold',
         fontSize: 25,
       color: '#fff',
       textAlign: 'center'

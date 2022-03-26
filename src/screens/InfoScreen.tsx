@@ -68,6 +68,7 @@ import GetService from "../API/api";
 
 const Styles = StyleSheet.create({
     topText: {
+        fontFamily: 'ProximaBold',
         fontSize: 20,
         fontWeight: '700',
         color: '#030303'
@@ -83,6 +84,7 @@ const Styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     tableText: {
+        fontFamily: 'ProximaBold',
         marginTop: 20,
         fontSize: 20,
         marginLeft: 10
@@ -98,6 +100,7 @@ const Styles = StyleSheet.create({
         borderRadius: 30
     },
     buttonText: {
+        fontFamily: 'ProximaBold',
         fontSize: 17,
         color: '#ffff'
     }

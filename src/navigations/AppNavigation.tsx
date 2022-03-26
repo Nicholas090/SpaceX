@@ -5,13 +5,15 @@ import { HomeScreen } from '../screens/Home';
 import { StartPage } from '../screens/StartPage';
 import { InfoScreen } from '../screens/InfoScreen';
 import { CapsulesScreen} from '../screens/CapsulesScreen';
+import { RocketScreen } from '../screens/RocketScreen';
 
 
 export type RootStackParamList = {
   HomeScreen: undefined,
   HelloPage: undefined,
   InfoScreen: undefined,
-  CapsulesScreen: undefined
+  CapsulesScreen: undefined,
+  RocketScreen: undefined
 };
 
 
@@ -35,6 +37,9 @@ export default function Navigation() {
             name="CapsulesScreen"
             component={CapsulesScreen}
             />
+            <Stack.Screen 
+            name="RocketScreen"
+            component={RocketScreen}/>
           </Stack.Navigator>
         </NavigationContainer>
       );

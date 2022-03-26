@@ -5,17 +5,11 @@ import GetService from "../API/api";
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-  export const CapsulesScreen:React.FC = () => {
+  export const RocketScreen:React.FC = () => {
 
-        // const [state, setstate] = useState({   
-        //     name: '',
-        //     founder:  '',
-        //     founded: null as any,
-        //     employees:  null as any,
-        //     vehicles: null as any
-        // });
 
-        const [capsules, setCapsules] = useState({
+
+        const [rockets, setRockets] = useState({
             capsule_serial: '' ,
             capsule_id: '',
             status: '',
@@ -25,31 +19,24 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
         const GetServiceHome = new GetService;
 
-    //     const UpdateInfo = () => {
-    //     GetServiceHome.getCompanyInfo().
-    //             then((info) => {
-    //                 console.log(info)
-    //                 setstate(info)
-    //             })
-        
-    // } 
+  
 
-    const UpdateCapsules = () => {
+    const UpdateRockets = () => {
        GetServiceHome.getOneCapsule('C112').
               then((info) => {
                   console.log(info)
-                  setCapsules(info)
+                  setRockets(info)
               })
 
             }
 
-    const { capsule_serial, capsule_id, status, original_launch, details} = capsules
+    const { capsule_serial, capsule_id, status, original_launch, details} = rockets
 
     const url = require('../../assets/photos/Crew_Dragon_at_the_ISS_for_Demo_Mission_1_(cropped).jpg')
     return (
             <View style={{ height: '100%', width: '100%', backgroundColor: '#070303'}}>         
                 <View style={Styles.wrapTop}>
-                    <Text style={Styles.topText}>Информация про  Капсулы</Text>
+                    <Text style={Styles.topText}>Информация про  Ракеты</Text>
                 </View>
             <View style={Styles.table}>
                 <Text style={Styles.tableText}>Номер капсулы: {capsule_serial}</Text>
@@ -59,8 +46,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
                 <Text style={Styles.tableText}>Детали: {details}</Text>
             </View>
                  <View style={Styles.buttonWrap}>
-                    <TouchableOpacity style={Styles.buttonOpacity} onPress={UpdateCapsules} >
-                        <Text style={Styles.buttonText}>Получить информацию про капсулу</Text>
+                    <TouchableOpacity style={Styles.buttonOpacity} onPress={UpdateRockets} >
+                        <Text style={Styles.buttonText}>Получить информацию про ракету</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={{ height: 350, width: '100%', position: 'absolute', bottom: 0, zIndex: -1}}>

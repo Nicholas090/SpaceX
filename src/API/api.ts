@@ -36,8 +36,8 @@ export default class GetService  {
      }
 
         _GetInfo(info: GetInfoInterface) {
-            console.log(info)
-         return {
+
+            return {
              name: info.name !==  undefined || '' ? info.name: 'Sorry, we dont have any information '   ,
              founder: info.founder  !==  undefined || '' ?  info.founder : 'Sorry, we dont have any information' ,
              founded: info.founded  !==  undefined ?  info.founded : 'Sorry, we dont have any information '    ,
@@ -53,6 +53,23 @@ export default class GetService  {
                 status: info.status  !== '' || undefined ? info.status : 'Sorry, we dont have any information '  ,
                 original_launch: info.original_launch  !== '' || undefined ? this._dateRegExp(info.original_launch) : 'Sorry, we dont have any information '  ,
                 details: info.details == null || '' ? 'No information ' : info.details
+            }
+        }
+
+        _GetRockets(info) {
+            
+            return {
+                "stages": 2,
+                "boosters": 0,
+                "cost_per_launch": 6700000,
+                "success_rate_pct": 40,
+                "first_flight": "2006-03-24",
+                "country": "Republic of the Marshall Islands",
+                "height": {
+                  "meters": 22.25,
+                },
+                "wikipedia": "https://en.wikipedia.org/wiki/Falcon_9",
+                "rocket_name": "Falcon 9",
             }
         }
     
