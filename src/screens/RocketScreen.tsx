@@ -101,7 +101,9 @@ const Styles = StyleSheet.create({
     buttonText: {
         fontFamily: 'ProximaThin',
         fontSize: 17,
-        color: '#ffff'
+        color: '#ffff',
+        fontWeight: '800',
+        fontStyle: 'italic'
     }
 });
 

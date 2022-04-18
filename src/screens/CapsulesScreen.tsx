@@ -96,8 +96,8 @@ const Styles = StyleSheet.create({
         fontFamily: 'ProximaThin',
         fontSize: 17,
         color: '#ffff',
-        fontWeight: 'bold',
-    
+        fontWeight: '800',
+        fontStyle: 'italic'
     }
 });
 

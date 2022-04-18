@@ -61,8 +61,7 @@ const Styles = StyleSheet.create({
     table: {
         marginTop: 30,
         display: 'flex',
-        alignItems: 'flex-start',
-    },
+        },
     tableText: {
         fontFamily: 'ProximaBold',
         marginTop: 20,
@@ -70,7 +69,8 @@ const Styles = StyleSheet.create({
         marginLeft: 10
     },
     buttonWrap: {
-        display: 'flex',
+        // display: 'flex',
+        // textAlign: 'center',
         alignItems: 'center',
         marginTop: 50
     },
@@ -80,9 +80,11 @@ const Styles = StyleSheet.create({
         borderRadius: 30
     },
     buttonText: {
-        fontFamily: 'ProximaBold',
+        fontFamily: 'ProximaThin',
         fontSize: 17,
-        color: '#ffff'
+        color: '#ffff',
+        fontWeight: '800',
+        fontStyle: 'italic'
     }
 });
 

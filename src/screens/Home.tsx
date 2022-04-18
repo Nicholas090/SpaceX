@@ -1,14 +1,17 @@
-import React from "react";
+import React, { Component, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Button, StyleSheet, Text, View , Pressable} from "react-native";
-import GetService from "../API/api";
 import { LinearGradient } from 'expo-linear-gradient';
 import { RootStackParamList } from "../navigations/AppNavigation";
+// @ts-ignore
+import ParticleEffectButton from 'react-particle-effect-button'
 
 
   type Props = NativeStackScreenProps<RootStackParamList, 'HomeScreen'>
 
     export  const HomeScreen: React.FC<Props> = ({ navigation }) => {
+
+      const [state, setState] = useState({hidden: false})
 
      const onPressInfo = () => {
         navigation.navigate('InfoScreen')
@@ -17,7 +20,11 @@ import { RootStackParamList } from "../navigations/AppNavigation";
         navigation.navigate('CapsulesScreen')
       }
       const onPressRockets = () => {
-        navigation.navigate('RocketScreen')
+        navigation.navigate('RocketScreen')  
+        butonAnimation      
+      }
+      const butonAnimation = () => {
+        setState({hidden: true})
       }
 
     return (
@@ -25,23 +32,24 @@ import { RootStackParamList } from "../navigations/AppNavigation";
         <LinearGradient colors={['rgba(8, 8, 5, 0.829)', 'transparent']} style={Styles.gradient}>      
         <View style={Styles.buttonsContainer}> 
          <View style={Styles.infoContainer}>
-          <Pressable style={Styles.infoWrap} onPress={onPressInfo}>
-            <Text style={Styles.infoButton}>Информация о компании</Text>          
+          <Pressable style={Styles.pressebaleWrap} onPress={onPressInfo}>
+            <Text style={Styles.pressebaleText}>Информация о компании</Text>          
           </Pressable>
          </View>
           <View style={Styles.capsuleContainer}>
-            <Pressable style={Styles.capsuleWrap} onPress={onPressCapsules}>  
-            <Text style={Styles.capsuleButton}>Информация о капсулах</Text>           
+            <Pressable style={Styles.pressebaleWrap} onPress={onPressCapsules}>  
+            <Text style={Styles.pressebaleText}>Информация о капсулах</Text>           
             </Pressable>
           </View>
           <View style={Styles.rocketContainer}>
-            <Pressable style={Styles.rocketWrap} onPress={onPressRockets}>  
-            <Text style={Styles.rocketButton}>Информация о ракетах</Text>           
-            </Pressable>
+         <Pressable style={Styles.pressebaleWrap} onPress={onPressRockets}>  
+            <Text style={Styles.pressebaleText}>Информация о ракетах</Text>           
+          </Pressable>         
           </View>
         </View>
        </LinearGradient>
       </View>
+
         )
   };
 
@@ -75,10 +83,10 @@ import { RootStackParamList } from "../navigations/AppNavigation";
       padding: 20,
       borderRadius: 30,
     },
-    capsuleWrap: {
-      backgroundColor: "#21365edc",
+    pressebaleWrap: {
+      backgroundColor: "#0077B5",
       padding: 20,
-      borderRadius: 30,
+      borderRadius: 8,
     },
     infoContainer: {
       paddingTop: 40,
@@ -104,9 +112,17 @@ import { RootStackParamList } from "../navigations/AppNavigation";
       width: '65%',
     },
     rocketWrap: {
-      backgroundColor: "#225dcadc",
+      backgroundColor: "#0077B5",
       padding: 20,
-      borderRadius: 30,
+      borderRadius: 8,
+      
+    },
+    pressebaleText: {
+      textAlign: 'center',
+      color: '#fff' ,
+      fontWeight: '500' ,
+      fontSize: 18,
+      fontFamily: 'ProximaBold'
     }
   });
   
