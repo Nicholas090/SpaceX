@@ -1,44 +1,29 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import {ImageBackground, StyleSheet, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {ImageBackground, Pressable, StyleSheet, Text, View } from "react-native";
 import { RootStackParamList } from "../navigations/AppNavigation";
 
+type Props = NativeStackScreenProps<RootStackParamList, 'HelloPage'>
 
+export const StartPage:React.FC<Props> = ({ navigation }) =>  {
 
+  const onPressStart = () => {
+    navigation.navigate('HomeScreen')
+    console.log('get started')
+  }
 
-
-    type Props = NativeStackScreenProps<RootStackParamList, 'HelloPage'>
-
-    export const StartPage:React.FC<Props> = ({ navigation }) =>  {
-
-       const onPressStart = () => {
-         navigation.navigate('HomeScreen')
-      }
-
-      const image = require('../../assets/photos/SpaceX-NASA-Launch-04.jpg');
-
-      // if () {
-      //     return (
-      //    <Loading/>
-      //   );       
-      // } 
-     
+  const image = require('../../assets/photos/SpaceX-NASA-Launch-04.jpg');
       
          
-    return (
+  return (
         <View style={Styles.container}>
-          
-           <ImageBackground  source={image} style={Styles.image} >
-               
+           <ImageBackground  source={image} style={Styles.image} >  
                 <View style={Styles.buttonContainer}>
-                   <TouchableOpacity style={Styles.wrap} onPress={onPressStart} >
-                       <Text style={Styles.start}>Get started</Text>
-                   </TouchableOpacity>
+                   <Pressable style={Styles.wrap} onPress={onPressStart} >
+                      <Text style={Styles.start}>Get started</Text>
+                   </Pressable>
                 </View>
-                
             </ImageBackground>
-          
         </View>
         )
      }

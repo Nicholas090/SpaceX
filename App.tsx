@@ -3,6 +3,7 @@ import Navigation from './src/navigations/AppNavigation';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
+import AppLoader from './src/components/SplashScreen';
 
 // export default function App() {
 //   return (
@@ -31,6 +32,7 @@ export default class App extends React.Component {
 
   
   _loadResourcesAsync = async () => {
+    await new Promise(resolve => setTimeout(resolve, 3000));
     return  Promise.all([
      await Asset.loadAsync([
         require("./assets/photos/SpaceX_Info.jpg"),
@@ -49,12 +51,12 @@ export default class App extends React.Component {
   };
   
   componentDidMount() {
-    this._loadResourcesAsync();
+    this._loadResourcesAsync().finally(() => this.setState({appIsReady: true}));
   }
 
+  
+
   _handleLoadingError = (error: Error) => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
     console.warn(error);
   };
 
@@ -66,20 +68,25 @@ export default class App extends React.Component {
   render(){
     if (this.state.appIsReady) {
       return (
-
-            <Navigation/>
-        
+        <Navigation/>
       );
-    } else {
+    }
+    else {
       return (
-        <AppLoading
-          // @ts-ignore
-          startAsync={this._loadResourcesAsync}
-          onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
-        />
+        <AppLoader/>
       )
     }
+      //  else {
+      //   return (
+      //     <AppLoading
+      //       // @ts-ignorer
+      //       startAsync={this._loadResourcesAsync}
+      //       onError={this._handleLoadingError}
+      //       onFinish={this._handleFinishLoading}
+            
+      //     />
+      //   )
+      // }
   }
 }
 

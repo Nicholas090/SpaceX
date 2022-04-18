@@ -26,22 +26,39 @@ export default function Navigation() {
             <Stack.Screen
             name="HomeScreen"
             component={HomeScreen}
-            options={{title: 'Главная страница'}}/>
+            options={{
+              title: 'Главная страница',
+              headerTitleAlign: 'center',
+              }}/>
             <Stack.Screen 
             name="HelloPage"
-            component={StartPage}/>
+            component={StartPage}
+            options={{
+              title: "Страница приветсвия",
+              headerTitleAlign: 'center',
+            }}/>
             <Stack.Screen 
             name="InfoScreen"
-            component={InfoScreen}/>
+            component={InfoScreen}
+            options={{
+              title: "Инфо страница",
+              headerTitleAlign: 'center',
+            }}/>
             <Stack.Screen 
             name="CapsulesScreen"
             component={CapsulesScreen}
-            />
+            options={{
+              title: "Страница с капсулами",
+              headerTitleAlign: 'center',
+            }}/>
             <Stack.Screen 
             name="RocketScreen"
-            component={RocketScreen}/>
+            component={RocketScreen}
+            options={{
+              title: "Cтраница c ракетами",
+              headerTitleAlign: 'center',
+            }}/>
           </Stack.Navigator>
         </NavigationContainer>
       );
 }
-

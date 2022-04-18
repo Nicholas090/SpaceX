@@ -1,49 +1,34 @@
 import  React, {useState} from 'react';
-import { View , StyleSheet, Text, Button, ImageBackground, Image} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View , StyleSheet, Text, Image, Pressable} from 'react-native';
 import GetService from "../API/api";
-import { LinearGradient } from 'expo-linear-gradient';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {  TextAPI } from '../components/TextAPI';
+import { GetCapsulesInterface } from '../types';
 
   export const CapsulesScreen:React.FC = () => {
 
-        // const [state, setstate] = useState({   
-        //     name: '',
-        //     founder:  '',
-        //     founded: null as any,
-        //     employees:  null as any,
-        //     vehicles: null as any
-        // });
+    const [state, setState] = useState({
+        capsule_serial: '' ,
+        capsule_id: '',
+        status: '',
+        original_launch: '',
+        details: ''
+    });
 
-        const [capsules, setCapsules] = useState({
-            capsule_serial: '' ,
-            capsule_id: '',
-            status: '',
-            original_launch: '',
-            details: ''
-        });
+    const GetServiceHome = new GetService;
 
-        const GetServiceHome = new GetService;
+    function chooseRandom(arr: GetCapsulesInterface[]){
+        const rand = Math.floor(Math.random() * arr.length);
+        return arr[rand]
 
-    //     const UpdateInfo = () => {
-    //     GetServiceHome.getCompanyInfo().
-    //             then((info) => {
-    //                 console.log(info)
-    //                 setstate(info)
-    //             })
-        
-    // } 
+    }
 
-    const UpdateCapsules = () => {
-       GetServiceHome.getOneCapsule('C112').
+    const UpdateRandomCapsules = () => {
+       GetServiceHome.getAllCapusles().
               then((info) => {
-                  console.log(info)
-                  setCapsules(info)
+                  setState(chooseRandom(info))
               })
-
             }
 
-    const { capsule_serial, capsule_id, status, original_launch, details} = capsules
 
     const url = require('../../assets/photos/Crew_Dragon_at_the_ISS_for_Demo_Mission_1_(cropped).jpg')
     return (
@@ -52,17 +37,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
                     <Text style={Styles.topText}>Информация про  Капсулы</Text>
                 </View>
             <View style={Styles.table}>
-                <Text style={Styles.tableText}>Номер капсулы: {capsule_serial}</Text>
-                <Text style={Styles.tableText}>Название капсулы: {capsule_id}</Text>
-                <Text style={Styles.tableText}>Статус: {status}</Text>
-                <Text style={Styles.tableText}>Дата запуска: {original_launch}</Text>
-                <Text style={Styles.tableText}>Детали: {details}</Text>
-            </View>
+                <TextAPI state={state as GetCapsulesInterface} type={'capsule'} />
                  <View style={Styles.buttonWrap}>
-                    <TouchableOpacity style={Styles.buttonOpacity} onPress={UpdateCapsules} >
-                        <Text style={Styles.buttonText}>Получить информацию про капсулу</Text>
-                    </TouchableOpacity>
-                </View>
+                    <Pressable style={Styles.buttonOpacity} onPress={UpdateRandomCapsules} >
+                        <Text style={Styles.buttonText}>Получить информацию про рандомную капсулу</Text>
+                    </Pressable>
+                 </View>
+            </View>
                 <View style={{ height: 350, width: '100%', position: 'absolute', bottom: 0, zIndex: -1}}>
                     <Image source={url}  style={{width: '100%', height: '100%', }}/>
                 </View>
@@ -82,7 +63,7 @@ const Styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         marginTop: '10%',
-        backgroundColor: '#001fced6',
+        // backgroundColor: '#001fced6',
         padding: 10,
         marginLeft: 15,
         marginRight: 15,
@@ -107,14 +88,16 @@ const Styles = StyleSheet.create({
         marginTop: 50
     },
     buttonOpacity: {
-        backgroundColor: '#0044d6',
+        backgroundColor: '#0044d647',
         padding: 15,
-        borderRadius: 30
+        borderRadius: 30,
     },
     buttonText: {
         fontFamily: 'ProximaThin',
         fontSize: 17,
-        color: '#ffff'
+        color: '#ffff',
+        fontWeight: 'bold',
+    
     }
 });
 

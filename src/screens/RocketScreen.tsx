@@ -1,36 +1,42 @@
 import  React, {useState} from 'react';
-import { View , StyleSheet, Text, Button, ImageBackground, Image} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View , StyleSheet, Text, Image, Pressable} from 'react-native';
 import GetService from "../API/api";
-import { LinearGradient } from 'expo-linear-gradient';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { TextAPI } from '../components/TextAPI';
+import { GetRocketsInterface } from '../types';
+
 
   export const RocketScreen:React.FC = () => {
 
 
 
         const [rockets, setRockets] = useState({
-            capsule_serial: '' ,
-            capsule_id: '',
-            status: '',
-            original_launch: '',
-            details: ''
+            stages: null as any,
+            boosters: null as any,
+            cost_per_launch: null as any,
+            success_rate_pct: null as any,
+            first_flight: '',
+            country: '',
+            company: '',
+            wikipedia: '',
+            rocket_name: '',
         });
 
         const GetServiceHome = new GetService;
 
-  
+        function chooseRandom(arr: GetRocketsInterface[]){
+            const rand = Math.floor(Math.random() * arr.length);
+            return arr[rand]
+    
+        }
 
-    const UpdateRockets = () => {
-       GetServiceHome.getOneCapsule('C112').
-              then((info) => {
-                  console.log(info)
-                  setRockets(info)
-              })
+        const UpdateRandomRocket = () => {
+            GetServiceHome.getAllRockets().
+                   then((info) => {
+                       setRockets(chooseRandom(info))
+                   })
+                 }
+     
 
-            }
-
-    const { capsule_serial, capsule_id, status, original_launch, details} = rockets
 
     const url = require('../../assets/photos/Crew_Dragon_at_the_ISS_for_Demo_Mission_1_(cropped).jpg')
     return (
@@ -39,17 +45,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
                     <Text style={Styles.topText}>Информация про  Ракеты</Text>
                 </View>
             <View style={Styles.table}>
-                <Text style={Styles.tableText}>Номер капсулы: {capsule_serial}</Text>
-                <Text style={Styles.tableText}>Название капсулы: {capsule_id}</Text>
-                <Text style={Styles.tableText}>Статус: {status}</Text>
-                <Text style={Styles.tableText}>Дата запуска: {original_launch}</Text>
-                <Text style={Styles.tableText}>Детали: {details}</Text>
-            </View>
-                 <View style={Styles.buttonWrap}>
-                    <TouchableOpacity style={Styles.buttonOpacity} onPress={UpdateRockets} >
+                <TextAPI state={rockets} type={'rocket'} />
+                <View style={Styles.buttonWrap}>
+                    <Pressable style={Styles.buttonOpacity} onPress={UpdateRandomRocket} >
                         <Text style={Styles.buttonText}>Получить информацию про ракету</Text>
-                    </TouchableOpacity>
+                    </Pressable>
                 </View>
+            </View>
                 <View style={{ height: 350, width: '100%', position: 'absolute', bottom: 0, zIndex: -1}}>
                     <Image source={url}  style={{width: '100%', height: '100%', }}/>
                 </View>
@@ -77,8 +79,6 @@ const Styles = StyleSheet.create({
     },
     table: {
         marginTop: 30,
-        display: 'flex',
-        alignItems: 'flex-start',
         marginLeft: 20
     },
     tableText: {
@@ -91,12 +91,12 @@ const Styles = StyleSheet.create({
     buttonWrap: {
         display: 'flex',
         alignItems: 'center',
-        marginTop: 50
+        marginTop: 100,
     },
     buttonOpacity: {
         backgroundColor: '#0044d6',
         padding: 15,
-        borderRadius: 30
+        borderRadius: 30,
     },
     buttonText: {
         fontFamily: 'ProximaThin',
@@ -106,3 +106,4 @@ const Styles = StyleSheet.create({
 });
 
 
+// 

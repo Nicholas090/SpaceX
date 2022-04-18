@@ -1,24 +1,16 @@
-import  React, {useState} from 'react';
-import { View , StyleSheet, Text, Button, ImageBackground} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import  React, {useEffect, useState} from 'react';
+import { View , StyleSheet, Text, Button, ImageBackground, Pressable} from 'react-native';
 import GetService from "../API/api";
+import { TextAPI } from '../components/TextAPI';
 
   export const InfoScreen:React.FC = () => {
 
         const [state, setstate] = useState({   
             name: '',
             founder:  '',
-            founded: null as any,
+            founded: '' as any,
             employees:  null as any,
             vehicles: null as any
-        });
-
-        const [capsules, setCapsules] = useState({
-            capsule_serial: '' ,
-            capsule_id: '',
-            status: '',
-            original_launch: '',
-            details: ''
         });
 
         const GetServiceHome = new GetService;
@@ -27,22 +19,13 @@ import GetService from "../API/api";
 
         GetServiceHome.getCompanyInfo().
                 then((info) => {
-                    console.log(info)
                     setstate(info)
                 })
         
     } 
 
-    const UpdateCapsules = () => {
-       GetServiceHome.getOneCapsule('C112').
-              then((info) => {
-                  console.log(info)
-                  setCapsules(info)
-              })
 
-            }
 
-             let {name, founder, founded, employees, vehicles} = state
     return (
         <View >
            <ImageBackground source={require('../../assets/photos/SpaceX_Info.jpg')} style={{width: '100%', height: '100%'}}>
@@ -50,20 +33,17 @@ import GetService from "../API/api";
             <Text style={Styles.topText}>Информация про компанию SpaceX</Text>
             </View>
             <View style={Styles.table}>
-                <Text style={Styles.tableText}>Название комрании: {name}</Text>
-                <Text style={Styles.tableText}>Создатель комрании: {founder}</Text>
-                <Text style={Styles.tableText}>Была создана: {founded}</Text>
-                <Text style={Styles.tableText}>Количество работников: {employees}</Text>
-                <Text style={Styles.tableText}>Количество ракет: {vehicles}</Text>
-            </View>
+                <TextAPI state={state} type={'info'}/>
                 <View style={Styles.buttonWrap}>
-                    <TouchableOpacity style={Styles.buttonOpacity} onPress={UpdateInfo} >
+                    <Pressable style={Styles.buttonOpacity} onPress={UpdateInfo} >
                         <Text style={Styles.buttonText}>Обновить информацию про компанию</Text>
-                    </TouchableOpacity>
+                    </Pressable>
                 </View>
+            </View>
            </ImageBackground>
         </View>
     )
+
 }
 
 const Styles = StyleSheet.create({
