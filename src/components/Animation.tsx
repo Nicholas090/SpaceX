@@ -19,8 +19,8 @@ export const AnimationLoading = ({ state }: AnimateProps) => {
 
 const Styles = StyleSheet.create({
   lottie: {
-    width: 200,
-    height: 200,
-    marginTop: 75,
+    width: 300,
+    height: 300,
+    marginTop: 100,
   },
 });

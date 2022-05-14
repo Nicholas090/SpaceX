@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Image, Pressable } from 'react-native';
+import { View, StyleSheet, Text, Image, Pressable, ImageBackground } from 'react-native';
 import GetService from '../API/api';
 import { AnimationLoading } from '../components/Animation';
 import { TextAPI } from '../components/TextAPI';
@@ -51,10 +51,11 @@ export const RocketScreen: React.FC = () => {
           </Pressable>
         </View>
       </View>
+      <AnimationLoading state={loading} />
+
       <View style={{ height: 350, width: '100%', position: 'absolute', bottom: 0, zIndex: -1 }}>
         <Image source={url} style={{ width: '100%', height: '100%' }} />
       </View>
-      <AnimationLoading state={loading} />
     </View>
   );
 };
@@ -89,11 +90,11 @@ const Styles = StyleSheet.create({
   },
   buttonWrap: {
     alignItems: 'center',
-    marginTop: 100,
+    marginTop: 50,
     alignContent: 'center',
   },
   buttonOpacity: {
-    backgroundColor: '#0044d6',
+    backgroundColor: '#0044d68a',
     padding: 15,
     borderRadius: 30,
   },
